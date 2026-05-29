@@ -12,5 +12,14 @@ class ArtworkController {
 
         return $result; // returns the result variable that stores the products from the query
     }
+
+    public function show($id) {
+
+        $artwork = new Artwork();
+
+        $result = $artwork->getArtworkByID($id);
+
+        return $result;
+    }
 }
 ?>

@@ -23,10 +23,19 @@ $products = $controller->index(); //calls the controller object to grab the prod
     <?php while ($row = $products->fetch(PDO::FETCH_ASSOC)): ?> <!-- loops through the db to build the page -->
 
     <div>
-        <h3><?php echo $row['Title']; ?></h3> <!-- each gets dynamically filled by the results of the loop above -->
+        <!-- each gets dynamically filled by the results of the loop above -->
+        <h3>
+            <a href = "productDetails.php?id=<?php echo $row['ProductID']; ?>">
+                <?php echo $row['Title']; ?>
+            </a>
+        </h3> 
+
         <p><?php echo $row['Description']; ?></p>
+
         <p>$<?php echo $row['Price']; ?></p>
+
         <?php echo $row['Category']; ?>
+        
     </div>
 
     <hr>
