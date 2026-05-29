@@ -5,7 +5,7 @@ require_once "../config/database.php";
 class Artwork {
 
     private $conn;
-    private $table = "Products"; // easier to maintain
+    private $table = "Products"; // easier to maintain changing table name across the functions
 
     // function runs when new artwork gets created
     public function __construct() {
