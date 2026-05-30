@@ -23,5 +23,15 @@ class ArtworkController {
 
         return $result;
     }
+
+    public function recent() {
+
+        $artwork = new Artwork();
+
+        $result = $artwork->getRecentArtwork();
+
+        return $result;
+
+    }
 }
 ?>
