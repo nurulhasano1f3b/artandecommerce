@@ -14,6 +14,9 @@ class Artwork {
 
     }
 
+
+    
+
     // function to grab all artworks
     public function getAllArtworks() {
         $query = "SELECT * FROM " . $this->table; // grab all products from the db

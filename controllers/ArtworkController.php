@@ -4,6 +4,7 @@ require_once "../models/Artwork.php";
 
 class ArtworkController {
     
+    // for index page to show all artwork
     public function index(){
         
         $artwork = new Artwork(); //creates the model
@@ -13,6 +14,7 @@ class ArtworkController {
         return $result; // returns the result variable that stores the products from the query
     }
 
+    // function to grab details for a specific artwork
     public function show($id) {
 
         $artwork = new Artwork();
