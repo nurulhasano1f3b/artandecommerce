@@ -36,6 +36,17 @@ class Artwork {
 
         return $stmt;
     }
+
+    // function to grab most recently added product (by id)
+    public function getRecentArtwork() {
+        $query = "SELECT * FROM " . $this->table . " ORDER BY productID DESC LIMIT 0, 1";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute(); //prepared statement
+
+        return $stmt;
+    }
 }
 
 ?>
