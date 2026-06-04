@@ -1,35 +1,29 @@
-
-
 <?php
-
-session_start(); // stararts a new session or loads the session. so functions work properly before hitting the controller
-
+require_once "../config/session.php";           // M-02 (replaces session_start())
 require_once "../controllers/CartController.php";
 
-// checks if post data exists/given from productdetails/form
-if(isset($_POST['productId'])) {
-
-    $productId = $_POST['productId']; //stores the given productid inside the variable
-
-    $cart = new CartController(); //create the cartcontroller object
-
-    // uses the cartcontroller method to addtocart based on the productid and updates
-    $cart->addToCart($productId);
-
-    
-
-    // uncomment the below out later, its the redirect. Code below it shows cart functionality
-
-    /*
-    // redirects user to ensure no duplicate submission (PRG)
-    header("Location: ../views/productDetails.php?id=$productId");
-    exit();
-    */
-
-    echo "<pre>";
-    print_r($_SESSION);
-    echo "</pre>";
-
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['productId'])) {
+    http_response_code(400);
+    exit("Invalid request.");
 }
 
-?>
+// L-02: Reject anything that is not a positive integer
+$productId = filter_var($_POST['productId'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+if (!$productId) {
+    http_response_code(400);
+    exit("Invalid product.");
+}
+
+// M-03: Regenerate session ID when the first item is added to a fresh session
+$cartWasEmpty = empty($_SESSION['cart']);
+
+$cart = new CartController();
+$cart->addToCart($productId);
+
+if ($cartWasEmpty) {
+    session_regenerate_id(true); // fixes session fixation on cart creation
+}
+
+// C-01: PRG pattern — redirect instead of echoing session state
+header("Location: ../views/productDetails.php?id=" . $productId);
+exit();

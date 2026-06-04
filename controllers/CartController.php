@@ -10,12 +10,13 @@ class CartController {
             $_SESSION['cart'] = [];
         }
 
-        // checks if cart exists and if product exists
+        // L-03: Cap quantity at 99 to prevent unbounded session bloat
         if (isset($_SESSION['cart'][$productId])) {
-            $_SESSION['cart'][$productId]++; //increments quantity of productid that exists within the cart
-        }
-        else {
-            $_SESSION['cart'][$productId] = 1; //else creates a new key-value pair
+            if ($_SESSION['cart'][$productId] < 99) {
+                $_SESSION['cart'][$productId]++;
+            }
+        } else {
+            $_SESSION['cart'][$productId] = 1;
         }
 
     }

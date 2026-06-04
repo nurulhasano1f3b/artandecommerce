@@ -1,3 +1,20 @@
-.vccode/
+# IDE / OS artefacts
+.vscode/
 .DS_Store
 Thumbs.db
+
+# Database credentials — never commit production values (H-01)
+# Copy config/database.php and set DB_* environment variables instead.
+config/database.php
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Composer vendor directory
+/vendor/
+
+# Database exports / dumps
+*.sql.bak
+*.dump.sql

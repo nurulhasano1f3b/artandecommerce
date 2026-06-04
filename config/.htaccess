@@ -1,0 +1,4 @@
+# Deny direct HTTP access to everything in config/.  (M-06)
+# PHP files in this directory are only ever included by other PHP scripts,
+# never requested directly through the web server.
+Require all denied

@@ -1,0 +1,2 @@
+# Deny direct HTTP access to SQL schema and migration files. (M-05)
+Require all denied
