@@ -1,0 +1,8 @@
+{
+    "name": "art-ecommerce/art-ecommerce",
+    "description": "Art gallery e-commerce site",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
+    }
+}
